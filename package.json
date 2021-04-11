@@ -8,7 +8,11 @@
   "private": true,
   "scripts": {
     "dev": "nodemon --exec 'ts-node --log-error' src/app.ts",
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint . --ext js,ts",
+    "lint:fix": "eslint --fix . --ext js,ts",
+    "type-check": "tsc --project tsconfig.json --pretty --noEmit",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@types/jest": "26.0.22",
@@ -17,8 +21,10 @@
     "eslint": "^7.12.1",
     "eslint-config-standard": "16.0.2",
     "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "24.3.5",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
+    "husky": "6.0.0",
     "jest": "26.6.3",
     "nodemon": "2.0.7",
     "ts-jest": "26.5.4",
