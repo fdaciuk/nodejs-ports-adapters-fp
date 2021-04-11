@@ -1,3 +1,4 @@
-it('First test', () => {
-  expect(true).toBe(true)
+it('Test', () => {
+  const a: number = 1
+  expect(a).toBe(1)
 })
