@@ -29,6 +29,8 @@ trim_trailing_whitespace = false
 - Criar o `package.json` com `yarn init -y`;
 - Instalar o TS com `yarn add --dev --exact typescript`;
 - Iniciar a config do TS com `yarn tsc --init`;
+- Instale o TS Node e Nodemon para dev com `yarn add --dev --exact nodemon ts-node`;
+- Configure o script `dev` no `package.json`;
 - Instalar o eslint com `yarn add --dev --exact eslint`;
 - Iniciar a config do EsLint com `yarn eslint --init`;
   - Selecionar "To check syntax, find problems, and enforce code style";
@@ -49,6 +51,7 @@ module.exports = {
   env: {
     es2021: true,
     node: true,
+    'jest/globals': true,
   },
   extends: [
     'standard',
@@ -79,3 +82,4 @@ module.exports = {
 }
 ```
 
+- Instale o Jest com `yarn add --dev --exact jest @types/jest`
