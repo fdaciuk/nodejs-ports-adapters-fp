@@ -4,5 +4,5 @@ const jestConfig = require('./jest.config')
 
 module.exports = {
   ...jestConfig,
-  testMatch: ['**/tests/**/*.[jt]s'],
+  testMatch: ['**/?(*.)+(spec|test).integration.[tj]s?(x)'],
 }

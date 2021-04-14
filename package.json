@@ -10,7 +10,7 @@
     "dev": "nodemon --exec 'sucrase-node' src/app.ts",
     "test": "jest --passWithNoTests && yarn test:integration",
     "test:watch": "jest --watch",
-    "test:integration": "jest --config jest.config.integration.js",
+    "test:integration": "jest --passWithNoTests --config jest.config.integration.js",
     "test:integration:watch": " yarn test:integration --watch",
     "lint": "eslint . --ext js,ts",
     "lint:fix": "eslint --fix . --ext js,ts",
