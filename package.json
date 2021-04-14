@@ -18,9 +18,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "apollo-server": "2.22.2",
-    "fp-ts": "2.9.5",
-    "graphql": "15.5.0"
+    "fp-ts": "2.9.5"
   },
   "devDependencies": {
     "@types/jest": "26.0.22",
