@@ -8,7 +8,7 @@
   "private": true,
   "scripts": {
     "dev": "nodemon --exec 'sucrase-node' src/app.ts",
-    "test": "jest",
+    "test": "jest && jest --testMatch '**/tests/**/*.[jt]s'",
     "test:watch": "jest --watch",
     "lint": "eslint . --ext js,ts",
     "lint:fix": "eslint --fix . --ext js,ts",
