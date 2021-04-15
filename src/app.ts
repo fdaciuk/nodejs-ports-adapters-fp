@@ -1,3 +1,2 @@
-console.log('ts!')
-
-export const a = 1
+import './utils/module-alias'
+import '@/ports/apollo-server'
