@@ -8,7 +8,7 @@
   "private": true,
   "scripts": {
     "start": "node dist/src/app.js",
-    "dev": "nodemon --exec 'sucrase-node' src/app.ts",
+    "dev": "nodemon --exec sucrase-node src/app.ts",
     "test": "jest --passWithNoTests && yarn test:integration",
     "test:watch": "jest --watch",
     "test:integration": "jest --passWithNoTests --config jest.config.integration.js",
@@ -20,6 +20,7 @@
     "build": "tsc"
   },
   "dependencies": {
+    "dotenv": "8.2.0",
     "fp-ts": "2.9.5",
     "module-alias": "2.2.2"
   },
