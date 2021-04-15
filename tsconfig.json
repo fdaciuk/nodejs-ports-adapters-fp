@@ -34,6 +34,7 @@
       "@/*": ["./src/*"]
     },
     "rootDirs": ["./src"],
+    "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
 
