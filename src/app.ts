@@ -1,3 +1,3 @@
-console.log('ts!')
+import { a } from '@/core/use-cases/a'
 
-export const a = 1
+console.log('ts!', a)
