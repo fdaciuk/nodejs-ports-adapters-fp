@@ -45,6 +45,5 @@ const server = new ApolloServer({ typeDefs, resolvers })
 
 server.listen().then(({ url }) => {
   console.log(`🚀 Server ready at ${url}`)
+  console.log('CUSTOM_ENV:', process.env.CUSTOM_ENV)
 })
-
-export default server

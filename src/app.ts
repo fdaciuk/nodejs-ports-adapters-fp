@@ -1,3 +1,3 @@
 import 'dotenv/config'
-import './utils/module-alias'
+import './config/module-alias'
 import '@/ports/apollo-server'
