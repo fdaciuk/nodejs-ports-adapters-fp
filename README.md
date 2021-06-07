@@ -16,6 +16,19 @@ Node.js, TypeScript, fp-ts, Apollo Server
 - **yarn prepare**: Not suposed to be manually used. It's just to configure husky.
 - **yarn build**: Generates production build
 
+## Important usage information
+
+### Environment Variables
+
+You can use env vars by creating a `.env` file on the root of the project.
+To document all used env vars, and get autocomplete when use `process.env.YOU_VAR`,
+just put all your env vars on file `environment.d.ts`.
+
+### Global import
+
+All files and dirs inside `src` directory can be imported using `@/`.
+Prefer using this way over local import (`../../`).
+
 ## License
 
 MIT
