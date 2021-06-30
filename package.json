@@ -7,8 +7,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "node dist/src/app.js",
-    "dev": "nodemon --exec sucrase-node src/app.ts",
+    "start": "node dist/src/index.js",
+    "dev": "nodemon --exec sucrase-node src/index.ts",
     "test": "jest --passWithNoTests && yarn test:integration",
     "test:watch": "jest --watch",
     "test:integration": "jest --passWithNoTests --config jest.config.integration.js",
@@ -17,7 +17,8 @@
     "lint:fix": "eslint --fix . --ext js,ts",
     "type-check": "tsc --project tsconfig.json --pretty --noEmit",
     "prepare": "husky install",
-    "build": "tsc"
+    "build": "tsc",
+    "ci": "yarn lint && yarn type-check && yarn test"
   },
   "dependencies": {
     "apollo-server": "2.22.2",
