@@ -5,3 +5,9 @@ export type User = {
   bio: string
   image: string
 }
+
+export type CreateUser = {
+  username: string
+  email: string
+  password: string
+}
