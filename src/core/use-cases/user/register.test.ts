@@ -1,5 +1,4 @@
 import * as TE from 'fp-ts/TaskEither'
-import * as E from 'fp-ts/Either'
 import { pipe } from 'fp-ts/function'
 import { register, OutsideRegister } from './register'
 import { CreateUser } from '../../types/user'
