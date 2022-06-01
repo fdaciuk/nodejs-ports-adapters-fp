@@ -1,8 +1,7 @@
-import * as TE from 'fp-ts/TaskEither'
 import { pipe } from 'fp-ts/function'
 import { register, OutsideRegister } from './register'
 import { CreateUser } from '../../types/user'
-import { unsafeEmail } from '@/config/tests/fixtures'
+import { unsafeEmail, mapAllTE } from '@/config/tests/fixtures'
 
 // Usamos Either quando temos algum valor síncrono que possivelmente vai disparar um erro
 // type <Either<E, A> = Right<A> | Left<E>
@@ -32,6 +31,6 @@ it('Deveria cadastrar um usuário com sucesso', async () => {
   return pipe(
     data,
     register(registerOk),
-    TE.map(result => expect(result).toBe(`Usuário ${data.username} cadastrado com sucesso!`)),
+    mapAllTE(result => expect(result).toBe(`Usuário ${data.username} cadastrado com sucesso!`)),
   )()
 })

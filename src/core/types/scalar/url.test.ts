@@ -15,9 +15,8 @@ it('Deveria validar um erro quando a url for inválida', () => {
     'invalid url',
     urlCodec.decode,
     mapAllE(error => {
-      if (Array.isArray(error)) {
-        expect(error[0]?.message).toBe('Invalid url')
-      }
+      const errorMessage: string = Array.isArray(error) ? error[0]?.message : ''
+      expect(errorMessage).toBe('Invalid url')
     }),
   )
 })
