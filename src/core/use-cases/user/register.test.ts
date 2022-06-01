@@ -2,6 +2,7 @@ import * as TE from 'fp-ts/TaskEither'
 import { pipe } from 'fp-ts/function'
 import { register, OutsideRegister } from './register'
 import { CreateUser } from '../../types/user'
+import { unsafeEmail } from '@/config/tests/fixtures'
 
 // Usamos Either quando temos algum valor síncrono que possivelmente vai disparar um erro
 // type <Either<E, A> = Right<A> | Left<E>
@@ -18,7 +19,7 @@ const registerOk: OutsideRegister<string> = async (data) => {
 
 const data: CreateUser = {
   username: 'rharison',
-  email: 'rharison.abreu@gmail.com',
+  email: unsafeEmail('rharison.abreu@gmail.com'),
   password: '12345678',
 }
 
