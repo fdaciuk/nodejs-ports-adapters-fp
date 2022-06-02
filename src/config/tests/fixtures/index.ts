@@ -1,17 +1,23 @@
 import * as TE from 'fp-ts/TaskEither'
-import * as E from 'fp-ts/Either'
 import { pipe } from 'fp-ts/function'
-import { Email } from '../../../core/types/scalar'
+import { Email, Slug, Password } from '../../../core/types/scalar'
 
 type Callback = (a: unknown) => unknown
-type MapAllTE = (fn: Callback) => (data: TE.TaskEither<unknown, unknown>) => TE.TaskEither<unknown, unknown>
-type MapAllE = (fn: Callback) => (data: E.Either<unknown, unknown>) => E.Either<unknown, unknown>
+type MapAll = (fn: Callback) => (data: TE.TaskEither<unknown, unknown>) => TE.TaskEither<unknown, unknown>
 
 export function unsafeEmail (value: string): Email {
   return value as any
 }
 
-export const mapAllTE: MapAllTE = (fn) => (data) => {
+export function unsafeSlug (value: string): Slug {
+  return value as any
+}
+
+export function unsafePassword (value: string): Password {
+  return value as any
+}
+
+export const mapAll: MapAll = (fn) => (data) => {
   return pipe(
     data,
     TE.map(fn),
@@ -19,10 +25,6 @@ export const mapAllTE: MapAllTE = (fn) => (data) => {
   )
 }
 
-export const mapAllE: MapAllE = (fn) => (data) => {
-  return pipe(
-    data,
-    E.map(fn),
-    E.mapLeft(fn),
-  )
+export function getErrorMessage (errors: unknown): string {
+  return Array.isArray(errors) ? errors[0].message : ''
 }
