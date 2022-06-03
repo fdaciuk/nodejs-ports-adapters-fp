@@ -17,6 +17,10 @@ export function unsafePassword (value: string): Password {
   return value as any
 }
 
+export function unsafeString (value: unknown): string {
+  return value as any
+}
+
 export const mapAll: MapAll = (fn) => (data) => {
   return pipe(
     data,
