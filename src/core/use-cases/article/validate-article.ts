@@ -5,9 +5,9 @@ import { CreateArticle, createArticleCodec } from '@/core/types/article'
 
 type ValidateArticle = (data: CreateArticle) => E.Either<Error, CreateArticle>
 
-export const validateArticle: ValidateArticle =  (data) => {
+export const validateArticle: ValidateArticle = (data) => {
   return pipe(
     createArticleCodec.decode(data),
-    E.mapLeft(errors => new Error(failure(errors).join(':::')))
+    E.mapLeft(errors => new Error(failure(errors).join(':::'))),
   )
 }
