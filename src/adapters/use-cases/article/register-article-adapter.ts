@@ -3,9 +3,9 @@ import {
   OutsideRegister,
   RegisterAticle,
 } from '../../../core/use-cases/article/register-article'
-import { Article } from '../../../core/types/article'
+import { ArticleOutput } from '../../../core/types/article'
 
 export const registerArticleAdapter: RegisterAticle = (outsideRegister) => (data) =>
   registerArticleCore(outsideRegister)(data)
 
-export type OutsideRegisterType = OutsideRegister<{article: Article}>
+export type OutsideRegisterType = OutsideRegister<{article: ArticleOutput}>
