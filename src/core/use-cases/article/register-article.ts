@@ -6,7 +6,7 @@ import { validateArticle } from './validate-article'
 
 export type OutsideRegister<A> = (data: CreateArticle) => Promise<A>
 
-type RegisterAticle = <A>(outsideRegister: OutsideRegister<A>) =>
+export type RegisterAticle = <A>(outsideRegister: OutsideRegister<A>) =>
   (data: CreateArticle) => TE.TaskEither<Error, A>
 
 export const registerArticle: RegisterAticle = (outsideRegister) => (data) => {
