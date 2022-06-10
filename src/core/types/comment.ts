@@ -3,13 +3,21 @@ import { withMessage, NonEmptyString } from 'io-ts-types'
 import { profileCodec } from './profile'
 import { dateCodec } from './scalar'
 
-export const commentCodec = t.type({
+const commentCodecRequired = t.type({
   id: t.number,
   createdAt: dateCodec,
   updatedAt: dateCodec,
   body: t.string,
+})
+
+const commentCodecOptional = t.partial({
   author: profileCodec,
 })
+
+export const commentCodec = t.intersection([
+  commentCodecRequired,
+  commentCodecOptional,
+])
 
 export const createCommentCodec = t.type({
   body: withMessage(
@@ -19,5 +27,5 @@ export const createCommentCodec = t.type({
 })
 
 export type Comment = t.TypeOf<typeof commentCodec>
-export type OutputComment = t.OutputOf<typeof commentCodec>
+export type CommentOutput = t.OutputOf<typeof commentCodec>
 export type CreateComment = t.TypeOf<typeof createCommentCodec>
