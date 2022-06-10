@@ -1,7 +1,7 @@
 import { pipe } from 'fp-ts/function'
 import { registerUser, OutsideRegister } from './register-user'
 import { CreateUser } from '../../types/user'
-import { unsafeEmail, unsafeSlug, unsafePassword, mapAll } from '@/config/tests/fixtures'
+import { unsafe, mapAll } from '@/config/tests/fixtures'
 
 // Usamos Either quando temos algum valor síncrono que possivelmente vai disparar um erro
 // type <Either<E, A> = Right<A> | Left<E>
@@ -21,21 +21,21 @@ const registerFail: OutsideRegister<never> = async () => {
 }
 
 const data: CreateUser = {
-  username: unsafeSlug('rharison'),
-  email: unsafeEmail('rharison.abreu@gmail.com'),
-  password: unsafePassword('12345678'),
+  username: unsafe('rharison'),
+  email: unsafe('rharison.abreu@gmail.com'),
+  password: unsafe('12345678'),
 }
 
 const dataWithWrongUsername: CreateUser = {
-  username: unsafeSlug('r'),
-  email: unsafeEmail('rharison.abreu@gmail.com'),
-  password: unsafePassword('12345678'),
+  username: unsafe('r'),
+  email: unsafe('rharison.abreu@gmail.com'),
+  password: unsafe('12345678'),
 }
 
 const dataWithWrongEmailAndPassword: CreateUser = {
-  username: unsafeSlug('rharison'),
-  email: unsafeEmail('rharison.abreu@'),
-  password: unsafePassword('123456'),
+  username: unsafe('rharison'),
+  email: unsafe('rharison.abreu@'),
+  password: unsafe('123456'),
 }
 
 it('Should successfully register a user', async () => {

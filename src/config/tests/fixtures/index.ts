@@ -4,7 +4,7 @@ import { pipe } from 'fp-ts/function'
 type Callback = (a: unknown) => unknown
 type MapAll = (fn: Callback) => (data: TE.TaskEither<unknown, unknown>) => TE.TaskEither<unknown, unknown>
 
-export function unsafe <T>(value: unknown): T {
+export function unsafe <T> (value: unknown): T {
   return value as T
 }
 

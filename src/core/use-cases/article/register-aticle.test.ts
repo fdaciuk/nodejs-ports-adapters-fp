@@ -1,7 +1,7 @@
 import { pipe } from 'fp-ts/function'
 import { CreateArticle } from '@/core/types/article'
 import { registerArticle, OutsideRegister } from './register-article'
-import { mapAll, unsafeSlug, unsafeString } from '@/config/tests/fixtures'
+import { mapAll, unsafe } from '@/config/tests/fixtures'
 
 const data: CreateArticle = {
   title: 'Article title',
@@ -13,32 +13,32 @@ const dataWithTagList: CreateArticle = {
   title: 'Article title 2',
   body: 'Article body 2',
   description: 'Article description 2',
-  tagList: [unsafeSlug('tag1'), unsafeSlug('tag2')],
+  tagList: [unsafe('tag1'), unsafe('tag2')],
 }
 
 const dataWithInvalidTagList: CreateArticle = {
   title: 'Article title 3',
   body: 'Article body 3',
   description: 'Article description 3',
-  tagList: [unsafeSlug('Tag3'), unsafeSlug('5tag4')],
+  tagList: [unsafe('Tag3'), unsafe('5tag4')],
 }
 
 const dataWithInvalidTitle: CreateArticle = {
-  title: unsafeString(2),
+  title: unsafe(2),
   body: 'Article body 4',
   description: 'Article description 4',
 }
 
 const dataWithInvalidBody: CreateArticle = {
   title: 'Article title 5',
-  body: unsafeString(3),
+  body: unsafe(3),
   description: 'Article description 4',
 }
 
 const dataWithInvalidDescription: CreateArticle = {
   title: 'Article title 6',
   body: 'Article body 6',
-  description: unsafeString(4),
+  description: unsafe(4),
 }
 
 const registerOk: OutsideRegister<string> = async (data: CreateArticle) => {
