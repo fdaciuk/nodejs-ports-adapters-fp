@@ -6,8 +6,10 @@ import * as TE from 'fp-ts/TaskEither'
 import {
   createUserInDB,
   createArticleInDB,
+  addCommentToAnArticleInDB,
 } from '@/adapters/ports/db'
 import { env } from '@/helpers/env'
+import { addCommentToAnArticle } from '@/adapters/use-cases/article/add-comment-to-an-article-adapter'
 
 const app = express()
 
@@ -29,6 +31,15 @@ app.post('/api/articles', async (req: Request, res: Response) => {
   return pipe(
     req.body.article,
     registerArticle(createArticleInDB),
+    TE.map(result => res.json(result)),
+    TE.mapLeft(error => res.status(422).json(getError(error.message))),
+  )()
+})
+
+app.post('/api/articles/:slug/comments', async (req: Request, res: Response) => {
+  return pipe(
+    req.body.comment,
+    addCommentToAnArticle(addCommentToAnArticleInDB),
     TE.map(result => res.json(result)),
     TE.mapLeft(error => res.status(422).json(getError(error.message))),
   )()
