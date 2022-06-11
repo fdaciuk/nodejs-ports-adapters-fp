@@ -1,9 +1,9 @@
-import { OutsideRegisterType } from '@/adapters/use-cases/user/register-user-adapter'
-import { OutsideRegisterType as OutsideRegisterArticle } from '@/adapters/use-cases/article/register-article-adapter'
-import { OutsideCreateCommentType } from '@/adapters/use-cases/article/add-comment-to-an-article-adapter'
+import * as user from '@/adapters/use-cases/user/register-user-adapter'
+import * as article from '@/adapters/use-cases/article/register-article-adapter'
+import * as comment from '@/adapters/use-cases/article/add-comment-to-an-article-adapter'
 import slugify from 'slugify'
 
-export const outsideRegister: OutsideRegisterType = async (data) => {
+export const outsideRegisterUser: user.OutsideRegisterUser = async (data) => {
   return {
     user: {
       email: data.email,
@@ -15,7 +15,7 @@ export const outsideRegister: OutsideRegisterType = async (data) => {
   }
 }
 
-export const outsideRegisterArticle: OutsideRegisterArticle = async (data) => {
+export const outsideRegisterArticle: article.OutsideRegisterArticle = async (data) => {
   const date = new Date().toISOString()
   return {
     article: {
@@ -32,7 +32,7 @@ export const outsideRegisterArticle: OutsideRegisterArticle = async (data) => {
   }
 }
 
-export const outsideCreateComment: OutsideCreateCommentType = async (data) => {
+export const outsideCreateComment: comment.OutsideCreateComment = async (data) => {
   const date = new Date().toISOString()
   return {
     comment: {
