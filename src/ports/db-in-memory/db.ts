@@ -36,7 +36,7 @@ export const outsideCreateComment: comment.OutsideCreateComment = async (data) =
   const date = new Date().toISOString()
   return {
     comment: {
-      id: Math.random(),
+      id: Date.now(),
       createdAt: date,
       updatedAt: date,
       body: data.body,

@@ -1,5 +1,5 @@
 import { pipe } from 'fp-ts/function'
-import { registerUser, OutsideRegister } from './register-user'
+import { registerUser, OutsideRegisterUser } from './register-user'
 import { CreateUser } from '../../types/user'
 import { unsafe, mapAll } from '@/config/tests/fixtures'
 
@@ -12,11 +12,11 @@ import { unsafe, mapAll } from '@/config/tests/fixtures'
 // Usamos o TaskEither para funções uma promise que possivelmente dispara um erro.
 // type TaskEither<E, A> = Either<E, Task<A>>
 
-const registerOk: OutsideRegister<string> = async (data) => {
+const registerOk: OutsideRegisterUser<string> = async (data) => {
   return `User ${data.username} successfully registered!`
 }
 
-const registerFail: OutsideRegister<never> = async () => {
+const registerFail: OutsideRegisterUser<never> = async () => {
   throw new Error('External error!')
 }
 
