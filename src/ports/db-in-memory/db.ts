@@ -7,7 +7,7 @@ export const outsideRegisterUser: user.OutsideRegisterUser = async (data) => {
   return {
     user: {
       email: data.email,
-      token: '',
+      token: data.token,
       username: data.username,
       bio: '',
       image: undefined,
