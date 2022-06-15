@@ -7,6 +7,7 @@ const data: CreateArticle = {
   title: 'Article title',
   body: 'Article body',
   description: 'Article description',
+  authorId: unsafe('38359046-9c21-4a1a-b821-0a5ef30ea462'),
 }
 
 const dataWithTagList: CreateArticle = {
@@ -14,6 +15,7 @@ const dataWithTagList: CreateArticle = {
   body: 'Article body 2',
   description: 'Article description 2',
   tagList: [unsafe('tag1'), unsafe('tag2')],
+  authorId: unsafe('38359046-9c21-4a1a-b821-0a5ef30ea462'),
 }
 
 const dataWithInvalidTagList: CreateArticle = {
@@ -21,24 +23,35 @@ const dataWithInvalidTagList: CreateArticle = {
   body: 'Article body 3',
   description: 'Article description 3',
   tagList: [unsafe('Tag3'), unsafe('5tag4')],
+  authorId: unsafe('38359046-9c21-4a1a-b821-0a5ef30ea462'),
 }
 
 const dataWithInvalidTitle: CreateArticle = {
   title: unsafe(2),
   body: 'Article body 4',
   description: 'Article description 4',
+  authorId: unsafe('38359046-9c21-4a1a-b821-0a5ef30ea462'),
 }
 
 const dataWithInvalidBody: CreateArticle = {
   title: 'Article title 5',
   body: unsafe(3),
   description: 'Article description 4',
+  authorId: unsafe('38359046-9c21-4a1a-b821-0a5ef30ea462'),
 }
 
 const dataWithInvalidDescription: CreateArticle = {
   title: 'Article title 6',
   body: 'Article body 6',
   description: unsafe(4),
+  authorId: unsafe('38359046-9c21-4a1a-b821-0a5ef30ea462'),
+}
+
+const dataWithInvalidAuthorId: CreateArticle = {
+  title: 'Article title',
+  body: 'Article body',
+  description: 'Article description',
+  authorId: unsafe('123'),
 }
 
 const registerOk: OutsideRegisterArticle<string> = async (data: CreateArticle) => {
@@ -65,7 +78,7 @@ it('Should create an article with tagList properly', () => {
   )()
 })
 
-it('Should note acecpt article register if tagList has invalid slugs', () => {
+it('Should not acecpt article register if tagList has invalid slugs', () => {
   return pipe(
     dataWithInvalidTagList,
     registerArticle(registerOk),
@@ -75,7 +88,7 @@ it('Should note acecpt article register if tagList has invalid slugs', () => {
   )()
 })
 
-it('Should note accept article register if title is invalid', () => {
+it('Should not accept article register if title is invalid', () => {
   return pipe(
     dataWithInvalidTitle,
     registerArticle(registerOk),
@@ -83,7 +96,7 @@ it('Should note accept article register if title is invalid', () => {
   )()
 })
 
-it('Should note accept article register if body is invalid', () => {
+it('Should not accept article register if body is invalid', () => {
   return pipe(
     dataWithInvalidBody,
     registerArticle(registerOk),
@@ -91,11 +104,19 @@ it('Should note accept article register if body is invalid', () => {
   )()
 })
 
-it('Should note accept article register if description is invalid', () => {
+it('Should not accept article register if description is invalid', () => {
   return pipe(
     dataWithInvalidDescription,
     registerArticle(registerOk),
     mapAll(result => expect(result).toEqual(new Error('Invalid description'))),
+  )()
+})
+
+it('Should not accept article register if authorId is invalid', async () => {
+  return pipe(
+    dataWithInvalidAuthorId,
+    registerArticle(registerOk),
+    mapAll(result => expect(result).toEqual(new Error('Invalid authorId'))),
   )()
 })
 

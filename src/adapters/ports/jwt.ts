@@ -1,6 +1,14 @@
 import * as jwt from '@/ports/jwt/jose'
-import { JWTPayload } from 'jose'
 
-export const generateToken = (payload: JWTPayload) => {
-  return jwt.createJWT(payload)
+type JWTPayload = {
+  [propName: string]: unknown
+}
+
+export const generateToken = (...args: [JWTPayload, string?]) => {
+  return jwt.createJWT(...args)
+}
+
+export const verifyToken = async (token: string) => {
+  const { payload } = await jwt.verifyJWT(token)
+  return payload
 }
