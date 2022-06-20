@@ -1,21 +1,21 @@
-import * as comment from '@/adapters/use-cases/article/add-comment-to-an-article-adapter'
 import { CreateArticle } from '@/core/types/article'
 import { db } from './db'
 import slugify from 'slugify'
 import { v4 as uuidv4 } from 'uuid'
+import { CreateComment } from '@/core/types/comment'
+import { ProfileOutput } from '@/core/types/profile'
 
 export const createArticleInDB = async (data: CreateArticle) => {
   const id = uuidv4()
   const date = new Date().toISOString()
-  const author = db.users[data.authorId]
+  const author = getUserProfileFromDB(data.authorId)
+  const articleSlug = slugify(data.title, { lower: true })
 
-  if (!author) {
-    throw new Error('Author not found')
-  }
+  db.articlesBySlug[articleSlug] = id
 
   const registeredArticle = db.articles[id] = {
     id,
-    slug: slugify(data.title, { lower: true }),
+    slug: articleSlug,
     title: data.title,
     description: data.description,
     body: data.body,
@@ -28,24 +28,41 @@ export const createArticleInDB = async (data: CreateArticle) => {
 
   return {
     article: registeredArticle,
-    author: {
-      username: author.username,
-      email: author.email,
-      bio: author.bio,
-      image: author.image,
-      following: false,
-    },
+    author,
   }
 }
 
-export const addCommentToAnArticleInDB: comment.OutsideCreateComment = async (data) => {
+export const addCommentToAnArticleInDB = async (data: CreateComment) => {
   const date = new Date().toISOString()
+  const id = Date.now()
+  const author = getUserProfileFromDB(data.authorId)
+  const articleId = db.articlesBySlug[data.articleSlug] || ''
+  const comment = {
+    id,
+    createdAt: date,
+    updatedAt: date,
+    body: data.body,
+    articleId,
+    authorId: data.authorId,
+  }
+
+  db.comments[articleId] = (db.comments[articleId] ?? []).concat(comment)
+
   return {
-    comment: {
-      id: Date.now(),
-      createdAt: date,
-      updatedAt: date,
-      body: data.body,
-    },
+    comment,
+    author,
+  }
+}
+
+function getUserProfileFromDB (userId: string): ProfileOutput {
+  const user = db.users[userId]
+  if (!user) {
+    throw new Error('Author does not exist')
+  }
+  return {
+    username: user.username,
+    bio: user.bio ?? '',
+    image: user.image ?? '',
+    following: false,
   }
 }

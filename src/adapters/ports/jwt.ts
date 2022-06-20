@@ -1,7 +1,7 @@
 import * as jwt from '@/ports/jwt/jose'
 
-type JWTPayload = {
-  [propName: string]: unknown
+export type JWTPayload = {
+  [id: string]: unknown
 }
 
 export const generateToken = (...args: [JWTPayload, string?]) => {
