@@ -1,4 +1,4 @@
-import { emailCodec, urlCodec, slugCodec, passwordCodec } from './scalar'
+import { emailCodec, urlCodec, slugCodec, passwordCodec } from '../types'
 import * as t from 'io-ts'
 
 const userCodecRequired = t.type({

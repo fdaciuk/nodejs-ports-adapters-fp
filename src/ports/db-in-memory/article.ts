@@ -1,9 +1,9 @@
-import { CreateArticle } from '@/core/types/article'
+import { CreateArticle } from '@/core/article/types'
 import { db } from './db'
 import slugify from 'slugify'
 import { v4 as uuidv4 } from 'uuid'
-import { CreateComment } from '@/core/types/comment'
-import { ProfileOutput } from '@/core/types/profile'
+import { CreateComment } from '@/core/comment/types'
+import { ProfileOutput } from '@/core/profile/types'
 
 export const createArticleInDB = async (data: CreateArticle) => {
   const id = uuidv4()
@@ -36,7 +36,12 @@ export const addCommentToAnArticleInDB = async (data: CreateComment) => {
   const date = new Date().toISOString()
   const id = Date.now()
   const author = getUserProfileFromDB(data.authorId)
-  const articleId = db.articlesBySlug[data.articleSlug] || ''
+  const articleId = db.articlesBySlug[data.articleSlug]
+
+  if (!articleId) {
+    throw new Error('Article does not exist')
+  }
+
   const comment = {
     id,
     createdAt: date,

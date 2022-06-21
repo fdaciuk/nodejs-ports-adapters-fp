@@ -1,6 +1,6 @@
-import { profileCodec } from './profile'
-import { tagCodec } from './tag'
-import { positiveCodec, slugCodec, dateCodec } from './scalar'
+import { profileCodec } from '../profile/types'
+import { tagCodec } from '../tag/types'
+import { positiveCodec, slugCodec, dateCodec } from '@/core/types'
 import * as t from 'io-ts'
 import { withMessage, UUID } from 'io-ts-types'
 

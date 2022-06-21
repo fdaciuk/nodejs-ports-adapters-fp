@@ -1,6 +1,6 @@
 import { pipe } from 'fp-ts/function'
 import { registerUser, OutsideRegisterUser } from './register-user'
-import { CreateUser } from '../../types/user'
+import { CreateUser } from '../types'
 import { unsafe, mapAll } from '@/config/tests/fixtures'
 
 // Usamos Either quando temos algum valor síncrono que possivelmente vai disparar um erro

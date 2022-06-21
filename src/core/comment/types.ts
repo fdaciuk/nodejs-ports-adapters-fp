@@ -1,7 +1,7 @@
 import * as t from 'io-ts'
 import { withMessage, NonEmptyString, UUID } from 'io-ts-types'
-import { profileCodec } from './profile'
-import { dateCodec, slugCodec } from './scalar'
+import { profileCodec } from '../profile/types'
+import { dateCodec, slugCodec } from '@/core/types'
 
 const commentCodecRequired = t.type({
   id: t.number,

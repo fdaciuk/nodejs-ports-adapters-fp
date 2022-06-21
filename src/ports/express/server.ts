@@ -1,16 +1,16 @@
 import express, { NextFunction, Request as ExpressRequest, Response } from 'express'
-import { registerUser } from '@/adapters/use-cases/user/register-user-adapter'
-import { registerArticle } from '@/core/use-cases/article/register-article'
+import { registerUser } from '@/core/user/use-cases/register-user-adapter'
+import { registerArticle } from '@/core/article/use-cases/register-article'
 import { pipe } from 'fp-ts/function'
 import * as TE from 'fp-ts/TaskEither'
 import {
   createUserInDB,
   createArticleInDB,
   addCommentToAnArticleInDB,
-} from '@/adapters/ports/db'
+} from '@/ports/adapters/db'
 import { env } from '@/helpers/env'
-import { addCommentToAnArticle } from '@/adapters/use-cases/article/add-comment-to-an-article-adapter'
-import { verifyToken, JWTPayload } from '@/adapters/ports/jwt'
+import { addCommentToAnArticle } from '@/core/article/use-cases/add-comment-to-an-article-adapter'
+import { verifyToken, JWTPayload } from '@/ports/adapters/jwt'
 
 type Request = ExpressRequest & {
   auth?: JWTPayload
